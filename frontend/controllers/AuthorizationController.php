@@ -37,19 +37,17 @@ class AuthorizationController extends Controller
         ];
     }
 
-    public function actionIndex(){
+    public function actionIndex()
+    {
         return $this->redirect('/login');
     }
 
-    public function actionLogin(){
+    public function actionLogin()
+    {
 
         if (!Yii::$app->user->isGuest) {
 
-            /*print_r('hello');
-            exit();*/
-
-            return $this->redirect('/profile');
-            //return $this->goHome();
+            return $this->redirect(['/profile']);
         }
 
 
@@ -67,7 +65,8 @@ class AuthorizationController extends Controller
     }
 
 
-    public function actionSignup(){
+    public function actionSignup()
+    {
 
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
@@ -89,7 +88,7 @@ class AuthorizationController extends Controller
         }
         if (($user = $model->verifyEmail()) && Yii::$app->user->login($user)) {
             Yii::$app->session->setFlash('success', 'Your email has been confirmed!');
-            return $this->goHome();
+            return $this->redirect(['/profile']);
         }
 
         Yii::$app->session->setFlash('error', 'Sorry, we are unable to verify your account with provided token.');

@@ -8,11 +8,11 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    //'homeUrl' => 'login',
+    'homeUrl' => '/login',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'defaultRoute' => 'authorization',
+    'defaultRoute' => 'authorization/login',
     'components' => [
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
